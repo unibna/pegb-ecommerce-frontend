@@ -6,6 +6,10 @@ https://github.com/unibna/pegb-ecommerce-backend
 ## Demo
 - Account Activation
 
+```
+Note: Because I don't have a lot of email accounts. Due to that, I was forced to send the activation link via my email instead of the registered email
+```
+
 https://github.com/user-attachments/assets/d7b5237c-8e3b-411b-83a7-625678d02040
 
 - Staff
