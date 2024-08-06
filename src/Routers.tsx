@@ -4,7 +4,7 @@ import { useSelector } from 'react-redux';
 import { Navigate } from 'react-router-dom';
 
 import { AuthenticatedLayout, DefaultLayout, StaffLayout } from './Layouts';
-import { LoginPage, LogoutPage, RegisterPage, RoleSelectionPage } from './Pages/Auth';
+import { ActivationPage, LoginPage, LogoutPage, RegisterPage, RoleSelectionPage } from './Pages/Auth';
 import { HomePage, CustomerHomePage, StaffHomePage } from './Pages/Home';
 import {
   StaffCategoryListingPage,
@@ -36,6 +36,7 @@ const Routers: React.FC = () => {
           <Route index element={<LoginPage />} />
           <Route path="login" element={<LoginPage />} />
           <Route path="register" element={<RegisterPage />} />
+          <Route path="activate" element={<ActivationPage />} />
         </Route>
 
         <Route path="/auth" element={<AuthenticatedLayout />}>
