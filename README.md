@@ -4,7 +4,7 @@
 https://github.com/unibna/pegb-ecommerce-backend
 
 ## Demo
-https://github.com/user-attachments/assets/4232c614-10b6-4985-971f-0f59b1bdfef5
+https://github.com/user-attachments/assets/65864f7b-e1e9-4450-b5fa-22d3369d35ec
 
 ## Setup
 ### Local
