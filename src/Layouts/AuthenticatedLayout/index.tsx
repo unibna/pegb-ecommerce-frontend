@@ -1,8 +1,10 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate, Outlet, Navigate } from "react-router-dom";
 
 import { Button, Flex, Layout, theme } from "antd";
+import { AuthService } from "../../Services";
+import { login } from "../../Slices/authSlice";
 
 const { Header, Content } = Layout;
 const defaultLayoutStyle = {
@@ -21,10 +23,16 @@ const DefaultLayout: React.FC<any> = () => {
     token: { colorBgContainer, borderRadiusLG },
   } = theme.useToken();
 
+  useEffect(() => {
+    if (AuthService.isLoggedIn()) {
+      dispatch(login())
+    }
+  }, []);
+
   if (!isLoggedIn) {
     return <Navigate to="/auth/login" />;
   }
-
+  
   return (
     <Layout style={defaultLayoutStyle}>
       <Layout>
