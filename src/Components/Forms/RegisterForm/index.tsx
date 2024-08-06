@@ -1,5 +1,6 @@
 import React from "react";
 import { useState } from "react";
+import { Navigate, useNavigate } from "react-router-dom";
 
 import { Alert, Button, Form, Input } from "antd";
 import { AuthService } from "../../../Services";
@@ -8,6 +9,7 @@ import { AuthService } from "../../../Services";
 const RegisterForm: React.FC = () => {
     const [form] = Form.useForm();
     const [errorMessage, setErrorMessage] = useState(null);
+    const navigate = useNavigate();
 
     const onFinish = async (values: any) => {
         setErrorMessage(null);
@@ -22,7 +24,7 @@ const RegisterForm: React.FC = () => {
         try {
             const data = await AuthService.register(values);
             if (data) {
-                window.location.href = '/auth/login';
+                navigate('/auth/login');
             }
         } catch (error: any) {
             console.error('Register failed:', error);
