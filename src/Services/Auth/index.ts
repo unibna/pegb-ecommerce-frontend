@@ -38,6 +38,32 @@ const register = async (
     }
 };
 
+const activate = async (token: string): Promise<any> => {
+    try {
+        const response = await axios.post(
+            ROOT_API_URL + '/activate/',
+            {
+                activation_token: token,
+            },
+            {
+                headers: {
+                    'Content-Type': 'application/json',
+                }
+            }
+        )
+        const data = await response.data;
+        return data;
+    } catch (error: any) {
+        if (error.response) {
+            const errors = error.response.data;
+            const errorMessage = `${Object.keys(errors)[0]}: ${errors[Object.keys(errors)[0]]}`
+            throw new Error(errorMessage);
+        } else {
+            throw error;
+        }
+    }
+}
+
 const login = async (email: string, password: string): Promise<any> => {
     try {
         const response = await axios.post(
@@ -65,7 +91,7 @@ const isLoggedIn = () => {
     return !!localStorage.getItem('accessToken');
 }
 
-const getHeader = async () => {
+const getHeader = () => {
     const accessToken = localStorage.getItem('accessToken');
     if (accessToken) {
         return { Authorization: 'Bearer ' + accessToken };
@@ -79,7 +105,7 @@ const me = async () => {
         const response = await axios.get(
             ROOT_API_URL + '/me/',
             {
-                headers: await getHeader()
+                headers: getHeader()
             }
         )
         const data = await response.data;
@@ -91,6 +117,7 @@ const me = async () => {
 
 const AuthService = {
     register,
+    activate,
     login,
     logout,
     getHeader,
