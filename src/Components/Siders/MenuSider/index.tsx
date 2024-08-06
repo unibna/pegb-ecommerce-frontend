@@ -19,19 +19,19 @@ const menuStyle = {
 
 const menuItems = [
     {
-        key: "category",
+        key: "staff-category",
         icon: <ProductOutlined />,
         title: "Category",
         label: <Link to="/staff/category">Category</Link>,
     },
     {
-        key: "product",
+        key: "staff-product",
         icon: <ShoppingCartOutlined />,
         title: "Product",
         label: <Link to="/staff/product">Product</Link>,
     },
     {
-        key: "discount",
+        key: "staff-promotion",
         icon: <TagOutlined />,
         title: "Promotion",
         label: <Link to="/staff/promotion">Promotion</Link>,
