@@ -3,7 +3,7 @@ import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Navigate } from "react-router-dom";
 
-import { Spin } from "antd";
+import { message, Spin } from "antd";
 
 import { AuthService } from "../../../Services";
 import { setUser } from "../../../Slices/userSlice";
@@ -20,7 +20,7 @@ const HomePage: React.FC = () => {
             const fetchedUser = await AuthService.me();
             dispatch(setUser(fetchedUser));
         } catch (error: any) {
-            console.log(error);
+            message.error(error.message);
         } finally {
             setLoading(false);
         }
