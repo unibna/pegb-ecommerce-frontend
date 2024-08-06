@@ -1,5 +1,8 @@
 # Pegb Ecommerce Frontend
 
+## Backend
+https://github.com/unibna/pegb-ecommerce-backend
+
 ## Demo
 https://github.com/user-attachments/assets/4232c614-10b6-4985-971f-0f59b1bdfef5
 
