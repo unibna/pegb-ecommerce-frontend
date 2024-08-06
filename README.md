@@ -1,7 +1,7 @@
 # Pegb Ecommerce Frontend
 
-## Demoo
-https://github.com/user-attachments/assets/6267719f-1e3e-46ee-99d9-ef43b20fb25a
+## Demo
+https://github.com/user-attachments/assets/4232c614-10b6-4985-971f-0f59b1bdfef5
 
 ## Setup
 ### Local
