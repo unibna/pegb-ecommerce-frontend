@@ -10,6 +10,8 @@ import {
   StaffCategoryListingPage,
   StaffProductListingPage,
   StaffPromotionListingPage,
+  StaffPromotionCreatePage,
+  StaffPromotionUpdatePage,
 } from './Pages/Staff';
 
 
@@ -45,14 +47,13 @@ const Routers: React.FC = () => {
           <Route index element={<StaffHomePage />} />
           <Route path="category" element={<StaffCategoryListingPage />} />
           <Route path="product" element={<StaffProductListingPage />} />
+
+          <Route path="promotion/create" element={<StaffPromotionCreatePage />} />
+          <Route path="promotion/update/:id" element={<StaffPromotionUpdatePage />} />
           <Route path="promotion" element={<StaffPromotionListingPage />} />
         </Route>
 
       </Routes>
-
-      {/*<Route path="/files" element={<MultiContentLayout />}>
-          <Route path="merge/:fileId" element={<FileMergePage />} />
-        </Route>*/}
     </BrowserRouter>
   );
 };

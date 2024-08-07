@@ -32,7 +32,7 @@ const ActivationPage: React.FC = () => {
     }
   }, []);
 
-  if (!loading && !errorMessage) {
+  if (!loading && !errorMessage && activation_token) {
     message.success("Activation success");
     navigate("/auth/login");
   }
@@ -42,12 +42,12 @@ const ActivationPage: React.FC = () => {
       <Flex gap="small" align="center" justify="center">
         <Flex vertical gap="large" align="center">
           <Flex align="center" justify="center" vertical>
-            {errorMessage ?
+            {errorMessage && activation_token ?
               <Text type="danger">Your activation is failed!</Text>
               : <Text disabled>Please wait a minute to activate your account</Text>
             }
           </Flex>
-          {loading && <Spin />}
+          {loading && activation_token && <Spin />}
         </Flex>
       </Flex>
     </div>

@@ -7,11 +7,17 @@ import { Flex, Button } from "antd";
 import { PromotionTable } from "../../../../Components/Tables";
 
 const StaffPromotionListingPage: React.FC = () => {
+    const navigate = useNavigate();
+
     return (
         <div className="staff-promotion-listing-page">
             <Flex gap="small" vertical>
                 <Flex justify="flex-end" gap="small">
-                    <Button>Add Promotion</Button>
+                    <Button 
+                        onClick={() => navigate("/staff/promotion/create")}
+                    >
+                        Add Promotion
+                    </Button>
                 </Flex>
                 <PromotionTable />
             </Flex>
