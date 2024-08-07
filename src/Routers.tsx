@@ -24,11 +24,8 @@ const Routers: React.FC = () => {
     <BrowserRouter>
       <Routes>
         
-        <Route path="/" element={<DefaultLayout />}>
-          <Route path="" element={<HomePage />} />
-        </Route>
-
         <Route path="/" element={<AuthenticatedLayout />}>
+          <Route path="" element={<HomePage />} />
           <Route path="customer" element={<CustomerHomePage />} />
         </Route>
 
