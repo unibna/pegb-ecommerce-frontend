@@ -8,7 +8,13 @@ import { ActivationPage, LoginPage, LogoutPage, RegisterPage, RoleSelectionPage 
 import { HomePage, CustomerHomePage, StaffHomePage } from './Pages/Home';
 import {
   StaffCategoryListingPage,
+  StaffCategoryCreatePage,
+  StaffCategoryEditPage,
+
   StaffProductListingPage,
+  StaffProductCreatePage,
+  StaffProductEditPage,
+  
   StaffPromotionListingPage,
   StaffPromotionCreatePage,
   StaffPromotionUpdatePage,
@@ -45,7 +51,13 @@ const Routers: React.FC = () => {
 
         <Route path="/staff" element={<StaffLayout />}>
           <Route index element={<StaffHomePage />} />
+          
+          <Route path="category/create" element={<StaffCategoryCreatePage />} />
+          <Route path="category/update/:id" element={<StaffCategoryEditPage />} />
           <Route path="category" element={<StaffCategoryListingPage />} />
+
+          <Route path="product/create" element={<StaffProductCreatePage />} />
+          <Route path="product/update/:id" element={<StaffProductEditPage />} />
           <Route path="product" element={<StaffProductListingPage />} />
 
           <Route path="promotion/create" element={<StaffPromotionCreatePage />} />

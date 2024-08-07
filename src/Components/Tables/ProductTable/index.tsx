@@ -1,32 +1,48 @@
 import React, { useEffect, useState } from "react";
-
-import { Flex, message, Spin, Table } from "antd";
+import { Flex, message, Spin, Table, Button } from "antd";
 import { ProductService } from "../../../Services";
-
+import { useNavigate } from "react-router-dom";
+import { EditOutlined } from "@ant-design/icons";
 
 const ProductTable: React.FC<any> = () => {
     const [dataSource, setDataSource] = useState([]);
     const [loading, setLoading] = useState(true);
+    const navigate = useNavigate();
+
     const columns = [
         {
             title: <Flex justify="center">ID</Flex>,
             key: "id",
             width: "10%",
-            render: (category: any) => <Flex justify="center">{category.id}</Flex>,
+            render: (product: any) => <Flex justify="center">{product.id}</Flex>,
         },
         {
             title: <Flex justify="center">Name</Flex>,
             key: "name",
             width: "30%",
-            render: (category: any) => <Flex justify="center">{category.name}</Flex>,
+            render: (product: any) => <Flex justify="center">{product.name}</Flex>,
         },
         {
             title: <Flex justify="center">Description</Flex>,
             key: "description",
-            width: "60%",
-            render: (category: any) => <Flex justify="center">{category.description}</Flex>,
+            width: "50%",
+            render: (product: any) => <Flex justify="center">{product.description}</Flex>,
         },
-    ]
+        {
+            title: <Flex justify="center">Actions</Flex>,
+            key: "actions",
+            width: "10%",
+            render: (product: any) => (
+                <Flex justify="center">
+                    <Button
+                        icon={<EditOutlined />}
+                        type="link"
+                        onClick={() => navigate(`/staff/product/update/${product.id}`)}
+                    />
+                </Flex>
+            ),
+        },
+    ];
 
     const fetchDataSource = async () => {
         try {
@@ -37,7 +53,7 @@ const ProductTable: React.FC<any> = () => {
         } finally {
             setLoading(false);
         }
-    }
+    };
 
     useEffect(() => {
         if (loading) {
@@ -50,6 +66,6 @@ const ProductTable: React.FC<any> = () => {
     }
 
     return <Table columns={columns} dataSource={dataSource} />;
-}
+};
 
 export default ProductTable;

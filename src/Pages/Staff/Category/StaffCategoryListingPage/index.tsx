@@ -8,11 +8,17 @@ import { CategoryTable } from "../../../../Components/Tables";
 
 
 const StaffCategoryListingPage: React.FC = () => {
+    const navigate = useNavigate();
+
     return (
         <div className="staff-category-listing-page">
             <Flex gap="small" vertical>
                 <Flex justify="flex-end" gap="small">
-                    <Button>Add Category</Button>
+                    <Button
+                        onClick={() => navigate("/staff/product/create")}
+                    >
+                        Add Category
+                    </Button>
                 </Flex>
                 <CategoryTable />
             </Flex>

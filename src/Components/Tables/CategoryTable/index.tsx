@@ -1,12 +1,17 @@
 import React, { useEffect, useState } from "react";
+import { useNavigate } from "react-router-dom";
 
-import { Flex, message, Spin, Table } from "antd";
+import { Flex, message, Spin, Table, Button } from "antd";
+import { EditOutlined } from "@ant-design/icons";
+
 import { CategoryService } from "../../../Services";
 
 
 const CategoryTable: React.FC<any> = () => {
     const [dataSource, setDataSource] = useState([]);
     const [loading, setLoading] = useState(true);
+    const navigate = useNavigate();
+
     const columns = [
         {
             title: <Flex justify="center">ID</Flex>,
@@ -23,10 +28,24 @@ const CategoryTable: React.FC<any> = () => {
         {
             title: <Flex justify="center">Description</Flex>,
             key: "description",
-            width: "60%",
+            width: "50%",
             render: (category: any) => <Flex justify="center">{category.description}</Flex>,
         },
-    ]
+        {
+            title: <Flex justify="center">Actions</Flex>,
+            key: "actions",
+            width: "10%",
+            render: (category: any) => (
+                <Flex justify="center">
+                    <Button
+                        icon={<EditOutlined />}
+                        type="link"
+                        onClick={() => navigate(`/staff/category/update/${category.id}`)}
+                    />
+                </Flex>
+            ),
+        },
+    ];
 
     const fetchDataSource = async () => {
         try {
@@ -37,7 +56,7 @@ const CategoryTable: React.FC<any> = () => {
         } finally {
             setLoading(false);
         }
-    }
+    };
 
     useEffect(() => {
         if (loading) {
@@ -48,8 +67,8 @@ const CategoryTable: React.FC<any> = () => {
     if (loading) {
         return <Spin />;
     }
-    
+
     return <Table columns={columns} dataSource={dataSource} />;
-}
+};
 
 export default CategoryTable;
