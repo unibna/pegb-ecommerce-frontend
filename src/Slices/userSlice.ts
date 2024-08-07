@@ -8,6 +8,7 @@ interface UserState {
   last_name: string
   is_staff: boolean
   is_active: boolean
+  department: number
 }
 
 const initialState: UserState = {
@@ -18,6 +19,7 @@ const initialState: UserState = {
   last_name: "",
   is_staff: false,
   is_active: false,
+  department: 0,
 };
 
 const userSlice = createSlice({
@@ -32,6 +34,7 @@ const userSlice = createSlice({
       state.last_name = action.payload.last_name;
       state.is_staff = action.payload.is_staff;
       state.is_active = action.payload.is_active;
+      state.department = action.payload.department;
     },
     reset(state) {
       state.id = 0
@@ -41,6 +44,7 @@ const userSlice = createSlice({
       state.last_name = ""
       state.is_staff = false
       state.is_active = false
+      state.department = 0
     },
   },
 });
