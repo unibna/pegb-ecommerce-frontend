@@ -1,8 +1,8 @@
 import React, { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate, useParams } from "react-router-dom";
-import { Flex, Form, Input, Button, message, Select, Switch, Divider, Alert } from "antd";
-import { ProductService } from "../../../Services";
+import { Flex, Form, Input, InputNumber, Button, message, Select, Spin, Switch, Divider, Alert } from "antd";
+import { CategoryService, ProductService } from "../../../Services";
 
 const { TextArea } = Input;
 const { Option } = Select;
@@ -12,6 +12,8 @@ const ProductForm: React.FC<{ isEdit?: boolean }> = ({ isEdit = false }) => {
     const { id } = useParams();
     const [form] = Form.useForm();
     const [errorMessage, setErrorMessage] = useState<string | null>(null);
+    const [categories, setCategories] = useState([]);
+    const [loading, setLoading] = useState(true);
 
     const dispatch = useDispatch();
 
@@ -22,6 +24,17 @@ const ProductForm: React.FC<{ isEdit?: boolean }> = ({ isEdit = false }) => {
             form.setFieldsValue(productData);
         } catch (error) {
             message.error("Failed to fetch product data");
+        }
+    };
+
+    const fetchCategoryData = async () => {
+        try {
+            const categories = await CategoryService.list();
+            setCategories(categories);
+        } catch (error) {
+            message.error("Failed to fetch data");
+        } finally {
+            setLoading(false);
         }
     };
 
@@ -69,6 +82,16 @@ const ProductForm: React.FC<{ isEdit?: boolean }> = ({ isEdit = false }) => {
         }
     }, [isEdit, id]);
 
+    useEffect(() => {
+        if (loading) {
+            fetchCategoryData();
+        }
+    }, [loading]);
+
+    if (loading) {
+        return <Flex justify="center"><Spin /></Flex>;
+    }
+
     return (
         <>
             <Form
@@ -104,10 +127,12 @@ const ProductForm: React.FC<{ isEdit?: boolean }> = ({ isEdit = false }) => {
                             name="category"
                             rules={[
                                 { required: true, message: "Please input the category!" },
-                                { type: "number", message: "Invalid category!" },
-                            ]}
-                        >
-                            <Input />
+                            ]}>
+                            <Select>
+                                {categories.map((category: any, index) => (
+                                    <Option value={category.id} key={category.id}>{category.name}</Option>
+                                ))}
+                            </Select>
                         </Form.Item>
 
                         <Form.Item
@@ -119,6 +144,17 @@ const ProductForm: React.FC<{ isEdit?: boolean }> = ({ isEdit = false }) => {
                             ]}
                         >
                             <Input allowClear />
+                        </Form.Item>
+
+                        <Form.Item
+                            label="Price"
+                            name="price"
+                            rules={[
+                                { required: true, message: "Please input a number!" },
+                                { type: "number", message: "Invalid number!" },
+                            ]}
+                        >
+                            <InputNumber min={1} max={100} style={{ width: "100%" }} />
                         </Form.Item>
 
                         <Form.Item
