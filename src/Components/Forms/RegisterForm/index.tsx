@@ -24,7 +24,7 @@ const RegisterForm: React.FC = () => {
         try {
             const data = await AuthService.register(values);
             if (data) {
-                navigate('/auth/login');
+                navigate('/auth/activate');
             }
         } catch (error: any) {
             console.error('Register failed:', error);
