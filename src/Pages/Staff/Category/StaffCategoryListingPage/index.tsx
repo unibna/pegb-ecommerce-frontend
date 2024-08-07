@@ -15,7 +15,7 @@ const StaffCategoryListingPage: React.FC = () => {
             <Flex gap="small" vertical>
                 <Flex justify="flex-end" gap="small">
                     <Button
-                        onClick={() => navigate("/staff/product/create")}
+                        onClick={() => navigate("/staff/category/create")}
                     >
                         Add Category
                     </Button>
