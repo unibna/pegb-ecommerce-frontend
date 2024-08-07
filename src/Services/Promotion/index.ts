@@ -92,11 +92,11 @@ const update = async (payload: any): Promise<any> => {
 }
 
 
-const ProductService = {
+const PromotionService = {
     list,
     get,
     create,
     update,
 };
 
-export default ProductService;
+export default PromotionService;
