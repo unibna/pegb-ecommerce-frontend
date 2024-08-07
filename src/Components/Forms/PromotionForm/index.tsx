@@ -9,7 +9,9 @@ import { PromotionService } from "../../../Services";
 import ConditionForm from "./ConditionForm";
 
 
+const { TextArea } = Input;
 const { Option } = Select;
+
 
 const PromotionForm: React.FC<{ isEdit?: boolean }> = ({ isEdit = false }) => {
     let navigate = useNavigate();
@@ -135,11 +137,18 @@ const PromotionForm: React.FC<{ isEdit?: boolean }> = ({ isEdit = false }) => {
                                 { type: "string", message: "Invalid name!" },
                             ]}
                         >
-                            <Input />
+                            <Input allowClear/>
+                        </Form.Item>
+
+                        <Form.Item
+                            label="Description"
+                            name="description"
+                        >
+                            <TextArea placeholder="textarea with clear icon" allowClear/>
                         </Form.Item>
 
                         <Form.Item label="Enabled" name="is_enabled" valuePropName="checked">
-                            <Switch defaultChecked/>
+                            <Switch defaultChecked />
                         </Form.Item>
 
                         <Divider>Condition Groups</Divider>
