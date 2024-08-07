@@ -27,11 +27,11 @@ const list = async (): Promise<any> => {
 };
 
 
-const get = async (promotionId: string): Promise<any> => {
+const get = async (membershipId: string): Promise<any> => {
     try {
         const headers = AuthService.getHeader();
         const response = await axios.get(
-            MEMBERSHIP_API_URL + `/${promotionId}/`,
+            MEMBERSHIP_API_URL + `/${membershipId}/`,
             { headers: headers }
         )
         const data = await response.data;
@@ -92,11 +92,11 @@ const update = async (id: string, payload: any): Promise<any> => {
 }
 
 
-const ProductService = {
+const MembershipService = {
     list,
     get,
     create,
     update,
 };
 
-export default ProductService;
+export default MembershipService;
