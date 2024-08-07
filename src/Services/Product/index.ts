@@ -27,25 +27,34 @@ const list = async (): Promise<any> => {
 };
 
 
-const create = async (
-    payload: {
-        username: string,
-        email: string,
-        password: string,
-        password2: string,
-        first_name: string,
-        last_name: string
-    }
-): Promise<any> => {
+const get = async (promotionId: string): Promise<any> => {
     try {
+        const headers = AuthService.getHeader();
+        const response = await axios.get(
+            PRODUCT_API_URL + `/${promotionId}/`,
+            { headers: headers }
+        )
+        const data = await response.data;
+        return data;
+    } catch (error: any) {
+        if (error.response) {
+            const errors = error.response.data;
+            const errorMessage = `${Object.keys(errors)[0]}: ${errors[Object.keys(errors)[0]]}`
+            throw new Error(errorMessage);
+        } else {
+            throw error;
+        }
+    }
+}
+
+
+const create = async (payload: any): Promise<any> => {
+    try {
+        const headers = AuthService.getHeader();
         const response = await axios.post(
-            PRODUCT_API_URL + '/register/',
+            PRODUCT_API_URL + '/',
             payload,
-            {
-                headers: {
-                    'Content-Type': 'application/json',
-                }
-            }
+            { headers: headers }
         )
         const data = await response.data;
         return data;
@@ -61,9 +70,33 @@ const create = async (
 };
 
 
+const update = async (id: string, payload: any): Promise<any> => {
+    try {
+        const headers = AuthService.getHeader();
+        const response = await axios.put(
+            PRODUCT_API_URL + `/${id}/`,
+            payload,
+            { headers: headers }
+        )
+        const data = await response.data;
+        return data;
+    } catch (error: any) {
+        if (error.response) {
+            const errors = error.response.data;
+            const errorMessage = `${Object.keys(errors)[0]}: ${errors[Object.keys(errors)[0]]}`
+            throw new Error(errorMessage);
+        } else {
+            throw error;
+        }
+    }
+}
+
+
 const ProductService = {
     list,
+    get,
     create,
+    update,
 };
 
 export default ProductService;
