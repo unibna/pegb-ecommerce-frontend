@@ -70,11 +70,11 @@ const create = async (payload: any): Promise<any> => {
 };
 
 
-const update = async (payload: any): Promise<any> => {
+const update = async (id: string, payload: any): Promise<any> => {
     try {
         const headers = AuthService.getHeader();
         const response = await axios.put(
-            PROMOTION_API_URL + `/${payload.id}/`,
+            PROMOTION_API_URL + `/${id}/`,
             payload,
             { headers: headers }
         )

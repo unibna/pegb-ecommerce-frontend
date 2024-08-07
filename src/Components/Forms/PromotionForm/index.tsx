@@ -56,8 +56,8 @@ const PromotionForm: React.FC<{ isEdit?: boolean }> = ({ isEdit = false }) => {
     };
 
     const onFinish = async (values: any) => {
-        if (isEdit) {
-            await handleUpdatePromotion(values);
+        if (isEdit && id) {
+            await handleUpdatePromotion(id, values);
         } else {
             await handleCreatePromotion(values);
         }
@@ -80,10 +80,10 @@ const PromotionForm: React.FC<{ isEdit?: boolean }> = ({ isEdit = false }) => {
         }
     }
 
-    const handleUpdatePromotion = async (values: any) => {
+    const handleUpdatePromotion = async (promotionId: string, values: any) => {
         console.log(values);
         try {
-            const response = await PromotionService.update(values);
+            const response = await PromotionService.update(promotionId, values);
             if (response) {
                 navigate('/staff/promotion');
             }
